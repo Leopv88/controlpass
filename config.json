@@ -1,0 +1,3 @@
+{
+  "connection_string": "Driver={SQLite3 ODBC Driver};Database=C:\\1\\project\\db\\test.db;ReadOnly=Yes;"
+}
