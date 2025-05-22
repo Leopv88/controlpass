@@ -1,3 +1,4 @@
+//config_window — отвечает за окно с настройками подключения к БД.
 use crate::config::AppConfig;
 use egui::{Window, Context};
 
