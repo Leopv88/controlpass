@@ -16,12 +16,18 @@ pub struct Dashboard { //Создаётся структура
 }
 
 impl Dashboard {
-    pub fn new() -> Self { //Инициализирует Dashboard с начальными значениями
-        Self {
-            connection_status: "Не проверено".into(), //строка "Не проверено" — до первой попытки соединения.
-            input_text: String::new(), //пустая строка
-        }
+    pub fn new(config: &crate::config::AppConfig) -> Self {
+    let connection_status = if crate::db::test_connection(config.db_connection_string()) {
+        "Успешно".into()
+    } else {
+        "Не удалось".into()
+    };
+
+    Self {
+        connection_status,
+        input_text: String::new(),
     }
+}
 
     pub fn ui(&mut self, ui: &mut Ui, config: &crate::config::AppConfig) {
         // Центр экрана

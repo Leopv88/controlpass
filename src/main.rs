@@ -19,8 +19,11 @@ fn main() -> Result<(), eframe::Error> {
         ..Default::default()
     };
     
-    let app = ui::App::new(); //создаётся экземпляр пользовательского интерфейса
-    run_native("ControlPass", options, Box::new(|_cc| Box::new(app)))
+    run_native("ControlPass", options, Box::new(|cc| {
+        let config = config::AppConfig::load(); //Загружает конфигурацию из файла (например, config.json). Это нужно, чтобы заполнить поля в окне настроек или сразу протестировать соединение с БД.
+        Box::new(ui::App::new(&config, cc))
+    }))
+
     /*
     "ControlPass" — имя окна (будет отображаться в заголовке, если не отключены рамки).
     options — передаём параметры окна (NativeOptions, выше).
