@@ -21,7 +21,7 @@ fn main() -> Result<(), eframe::Error> {
     
     run_native("ControlPass", options, Box::new(|cc| {
         let config = config::AppConfig::load(); //Загружает конфигурацию из файла (например, config.json). Это нужно, чтобы заполнить поля в окне настроек или сразу протестировать соединение с БД.
-        Box::new(ui::App::new(&config, cc))
+        Ok(Box::new(ui::App::new(&config, cc)))
     }))
 
     /*
